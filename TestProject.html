@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+</head>
+
+<body>
+
+    <h3>TestProject</h3>
+
+    <div>
+        <a data-p_no="1" rel="noopener noreferrer" href="#" onclick="setSession(11)" id="testAtag">
+            clickhere </a>
+    </div>
+    <div>
+        <a data-p_no="2" rel="noopener noreferrer" href="#" onclick="setSession(22)" id="testAtag">
+            clickhere2 </a>
+    </div>
+    <div>
+        <a data-p_no="3" rel="noopener noreferrer" href="#" onclick="setSession(33)" id="testAtag">
+            clickhere3 </a>
+    </div>
+    <div>
+        <a data-p_no="4" rel="noopener noreferrer" href="#" onclick="setSession(44)" id="testAtag">
+            clickhere4 </a>
+    </div>
+
+    <script type="text/javascript">
+        let key = document.getElementById("testAtag").getAttribute('data-p_no');
+
+        var i = 0;
+
+        var recentView = [];	//배열
+
+
+        function setSession(keySecond) {
+            window.i++;
+            console.log("out Function.value i : ", i);
+
+            console.log("working", i);
+
+            console.log("in Function.value i : ", i);
+            localStorage.setItem('First', key);
+            localStorage.setItem('Second', keySecond);
+
+            var Product = {
+                p_no: keySecond,
+                testNum: window.i
+            }
+
+            recentView.unshift(Product);
+            localStorage.setItem('Third', JSON.stringify(recentView));
+            console.log(JSON.parse(localStorage.getItem('Third')));
+
+            console.log("can u see that?");
+            console.log(recentView[0].p_no);
+            document.getElementById("First_p_no").value = recentView[0].p_no;
+
+            window.open('TestPage3.html', '_blank');
+            location.reload;
+        }
+
+
+
+        console.log(typeof (JSON.parse(localStorage.getItem('Third'))));
+
+
+
+    </script>
+
+
+    <table>
+        <tr>
+            <td><input type="text" name="First_p_no" id="First_p_no"></td>
+        </tr>
+    </table>
+</body>
+
+<div>
+    <input type="button" value="set" id="set_btn" />
+    <input type="button" value="get" id="get_btn" />
+</div>
+
+<div>
+    <input type="text" name="result" id="result">
+</div>
+
+<div id="result"></div>
+
+<script type="text/javascript">
+    function setItemWithExpireTime(keyName, keyValue, tts) {  // localStorage에 저장할 객체  
+        const obj = { value: keyValue, expire: Date.now() + tts };
+        // 객체를 JSON 문자열로 변환  
+        const objString = JSON.stringify(obj);
+        window.localStorage.setItem(keyName, objString);
+    }
+    // 만료 시간을 체크하며 데이터 읽기
+    function getItemWithExpireTime(keyName) {
+        // localStorage 값 읽기 (문자열)  
+        const objString = window.localStorage.getItem(keyName);
+        // null 체크  
+        if (!objString) { return null; }
+        // 문자열을 객체로 변환  
+        const obj = JSON.parse(objString);
+        // 현재 시간과 localStorage의 expire 시간 비교  
+        if (Date.now() > obj.expire) {
+            // 만료시간이 지난 item 삭제    
+            window.localStorage.removeItem(keyName);
+            // null 리턴    
+            return null;
+        }
+        // 만료기간이 남아있는 경우, value 값 리턴  
+        console.log("chk1 line118 : ", obj.value);
+        return obj.value;
+    }
+    // 'data set' 버튼 클릭
+    set_btn.addEventListener("click", () => {
+        // localStorage에 5초 만료시간을 설정하고 데이터 저장  
+        setItemWithExpireTime("name", "anna", 10000);
+    }) // 'data get' 버튼 클릭
+    get_btn.addEventListener("click", () => {
+        // localStorage의 데이터를 읽어온다  
+        let temp = getItemWithExpireTime("name");
+        // 읽어온 데이터를 화면에 출력한다  
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = temp;
+    })
+
+    for (let j = 0; j < localStorage.length; j++) {
+        let objArrString = new Array();
+
+        objArrString[j] = JSON.parse(localStorage.getItem("Third"));
+        console.log("typeChk : ", typeof objArrString[j]);
+        console.log("값 꺼내기 139 : ", objArrString[j].p_no);
+        console.log("값 꺼내기 140 : ", JSON.parse(localStorage.getItem("Third")).p_no);
+        console.log("for문 :", j);
+        console.log("arr ", objArrString[j]);
+
+        let testString = JSON.parse(localStorage.getItem("Third")).filter(function (ee) {
+            console.log("Test145 ee : ", ee);
+            console.log("Test146 ee.p_no : ", ee.p_no);
+            return ee.p_no;
+        });
+        console.log("FIN 149");
+        console.log(testString);
+    }
+
+    console.log("TEST 151 : ", JSON.parse(localStorage.getItem("Third").p_no));
+</script>
+
+</html>
