@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+
+</head>
+
+<body>
+
+    <h3>TestProject2</h3>
+
+    <div>
+        <a data-p_no="1" rel="noopener noreferrer" href="#" onclick="setSession(11)" id="testAtag">
+            clickhere </a>
+    </div>
+    <div>
+        <a data-p_no="2" rel="noopener noreferrer" href="#" onclick="setSession(22)" id="testAtag">
+            clickhere2 </a>
+    </div>
+    <div>
+        <a data-p_no="3" rel="noopener noreferrer" href="#" onclick="setSession(33)" id="testAtag">
+            clickhere3 </a>
+    </div>
+    <div>
+        <a data-p_no="4" rel="noopener noreferrer" href="#" onclick="setSession(44)" id="testAtag">
+            clickhere4 </a>
+    </div>
+
+
+    <script type="text/javascript">
+        let key = document.getElementById("testAtag").getAttribute('data-p_no');
+
+        var i = 0;
+
+        var recentView = [];	//배열
+
+
+        function setSession(keySecond) {
+            window.i++;
+            console.log("out Function.value i : ", i);
+
+            console.log("working", i);
+            localStorage.setItem('First', key);
+            localStorage.setItem('Second', keySecond);
+
+            var Product = {
+                p_no: keySecond,
+                testNum: window.i,
+                expire: Date.now() + 30000
+            }
+
+            recentView.unshift(Product);
+            localStorage.setItem('Third', JSON.stringify(recentView));
+
+            //[{p_no: 44, testNum: 2},{p_no: 33, testNum: 1}]식으로 하나씩 들어감
+            console.log("JSON.parse(localStorage.getItem('Third')) : ", JSON.parse(localStorage.getItem('Third')));
+
+            //[0]에서 첫번째 p_no 44나옴
+            console.log("recentView[0].p_no", recentView[0].p_no);
+            document.getElementById("First_p_no").value = recentView[0].p_no;
+            //[1]에서 두번째 p_no 33 나옴
+            console.log("recentView[1].p_no", recentView[1].p_no);
+            document.getElementById("Second_p_no").value = recentView[1].p_no;
+
+            for (let test = 0; test < recentView.length; test++) {
+                console.log("recentView배열 값 보기.. ", recentView[test].p_no);
+                let recentReduce = recentView.filter((v, z) => recentView.indexOf(v) === z);
+                console.log("recentReduce : ", recentReduce);
+            }
+
+            window.open('TestPage3.html', '_blank');
+            location.reload;
+        }
+
+        console.log("localstorage.length 값 : ", localStorage.length);  //3개 키값의 수
+        for (let j = 0; j < localStorage.length; j++) {
+            //0, 1, 2
+            console.log("for문 j의 값 : ", j);
+        }
+
+
+    </script>
+
+    <input type="text" name="" id="First_p_no">
+    <input type="text" name="" id="Second_p_no">
+</body>
+
+</html>

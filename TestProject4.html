@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+</head>
+
+<body>
+
+    <h3>TestProject4</h3>
+
+    <div>
+        <a data-p_no="1" rel="noopener noreferrer" href="#" onclick="setSession(11)" id="testAtag">
+            clickhere </a>
+    </div>
+    <div>
+        <a data-p_no="2" rel="noopener noreferrer" href="#" onclick="setSession(22)" id="testAtag">
+            clickhere2 </a>
+    </div>
+    <div>
+        <a data-p_no="3" rel="noopener noreferrer" href="#" onclick="setSession(33)" id="testAtag">
+            clickhere3 </a>
+    </div>
+    <div>
+        <a data-p_no="4" rel="noopener noreferrer" href="#" onclick="setSession(44)" id="testAtag">
+            clickhere4 </a>
+    </div>
+
+
+    <script type="text/javascript">
+        let key = document.getElementById("testAtag").getAttribute('data-p_no');
+
+        var i = 0;
+
+        var recentView = [];	//배열
+
+
+        function setSession(keySecond) {
+            window.i++;
+            console.log("out Function.value i : ", i);
+
+            var Product = {
+                p_no: keySecond,
+                testNum: window.i,
+                expire: Date.now() + 30000
+            }
+
+            recentView.unshift(Product);
+            localStorage.setItem('First', JSON.stringify(recentView));
+
+            function save(name, val) {
+                localStorage.setItem(name, JSON.stringify(val));
+            }
+            function get(name) {
+                return JSON.parse(localStorage.getItem(name));
+            }
+
+            let newArray = JSON.parse(localStorage.getItem("First")).reduce(function (acc, current) {
+                if (acc.findIndex(({ p_no }) => p_no === current.p_no) === -1) {
+                    acc.push(current);
+                }
+                return acc;
+            }, []);
+            save("Test", newArray);
+
+            for (let arrRecent = 0; arrRecent < newArray.length; arrRecent++) {
+                console.log("for2문 recentView.length Value : ", recentView.length);
+                console.log("for2문 arrRecent 값 보기 recentView[arrRecent].p_no.. : ", recentView[arrRecent].p_no);
+                console.log("for2문 arrRecent 값 보기 get(Test).. : ", get("Test"));
+                console.log("for2문 arrRecent 값 보기 get(Test)[arrRecent].p_no.. : ", get("Test")[arrRecent].p_no);
+
+                let getObj = get("Test");
+                console.log("for2문 arrRecent 값 보기 Object.. : ", getObj[arrRecent].p_no);
+            }
+            let heheTest = JSON.parse(localStorage.getItem("Test"));
+            for (let hehe = 0; hehe < Object.keys(heheTest).length; hehe++) {
+
+                console.log("hehe value :", hehe);  //0 1.. 순서로
+                console.log(heheTest[hehe].p_no);
+                console.log(heheTest[hehe].expire);
+            }
+
+
+
+            window.open('TestPage3.html', '_blank');
+            location.reload;
+        }
+
+
+
+
+        //Test
+        const rowCnt = 3;
+        const colCnt = 2;
+
+        document.write('<table border="1">');
+        for (let row = 0; row < rowCnt; row++) {
+            document.write('tr');
+            for (let col = 0; col < colCnt; col++) {
+                document.write('<td>');
+                document.write();
+                document.write();
+                document.write('<td>');
+            }
+            document.write('</tr>');
+        }
+        document.write('</table>');
+
+
+
+    </script>
+
+    <input type="text" name="" id="First_p_no">
+    <input type="text" name="" id="Second_p_no">
+
+</body>
+
+</html>

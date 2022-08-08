@@ -148,10 +148,16 @@
             return ee.p_no;
         });
         console.log("FIN 149");
-        console.log(testString);
+        console.log("for 151 : ", testString);
+        console.log("for 152 : ", testString.p_no);
+        let testString2 = JSON.parse(localStorage.getItem("Third")).map(test2 => test2);
+        console.log("for 154 : ", testString2);
+        console.log("for 155 : ", typeof testString2);
+        console.log("for 156 object.key: ", Object.keys("p_no"));
+
     }
 
-    console.log("TEST 151 : ", JSON.parse(localStorage.getItem("Third").p_no));
+    console.log("TEST 159 : ", JSON.parse(localStorage.getItem("Third").p_no));
 </script>
 
 </html>
