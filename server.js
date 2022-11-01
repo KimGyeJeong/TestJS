@@ -14,7 +14,7 @@ app.get('/helloTest', function(req, res){
     res.send('Welcome');
 });
 
-app.get('welcomeTest', function(req, res){
+app.get('/welcomeTest', function(req, res){
     res.send('Test. Welcome');
 });
 
