@@ -19,5 +19,19 @@ app.get('/welcomeTest', function(req, res){
 });
 
 app.get('/', function(req, res){
+    console.log('mainPage!');
+    console.log('welcome test page');
+    // res.send('Welcome'); //ERROR
     res.sendFile(__dirname + '/index.html')
+});
+
+app.get('/testget', function(req, res){
+    console.log('testGetPage!');
+    console.log(req.get('name'));
+    console.log(req.get('age'));
+    // console.log(req);
+    console.log('name : ',req.query.name);
+    console.log('age : ',req.query.age);
+    res.sendFile(__dirname + '/index.html')
+
 });
