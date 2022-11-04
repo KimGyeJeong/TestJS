@@ -1,0 +1,106 @@
+process 객체는 현재 실행되고 있는 노드 프로세스에 대한 정보를 담고 있음.
+일반적으로 OS나 실행 환경별로 다른 동작을 하고 싶을 때 사용.
+
+PS C:\Users\pmwkd\WebstormProjects\studynodejs\nodejs\study1104> node
+Welcome to Node.js v19.0.0.
+Type ".help" for more information.
+> process.version
+'v19.0.0'
+> process.arch
+'x64'
+> process.platform
+'win32'
+> process.pid
+40084
+> process.uptime()
+174.1474773
+> process.execPath
+'C:\\Program Files\\nodejs\\node.exe'
+> process.cwd()
+'C:\\Users\\pmwkd\\WebstormProjects\\studynodejs\\nodejs\\study1104'
+> process.cpuUsage()
+{ user: 312000, system: 468000 }
+> process.env
+{
+  'IntelliJ IDEA Community Edition': 'C:\\Program Files\\JetBrains\\IntelliJ IDEA Community Edition 2020.1.1\\bin;',
+  TERM_SESSION_ID: 'a542473f-58f9-48ed-9df8-acbde94c3e13',
+  CommonProgramW6432: 'C:\\Program Files\\Common Files',
+  ProgramW6432: 'C:\\Program Files',
+  OPENSSL_ia32cap: ':~0x20000000',
+  USERNAME: 'pmwkd',
+  ALLUSERSPROFILE: 'C:\\ProgramData',
+  USERPROFILE: 'C:\\Users\\pmwkd',
+  PROCESSOR_REVISION: '0802',
+  IDEA_INITIAL_DIRECTORY: 'C:\\Users\\pmwkd\\Desktop',
+  PUBLIC: 'C:\\Users\\Public',
+  Path: 'C:\\Python311\\Scripts\\;C:\\Python311\\;C:\\Users\\pmwkd\\Desktop\\DB\\WINDOWS.X64_193000_db_home\\bin;C:\\Program Files\\Java\\jdk-11.0.14\\bin;C:\\Program Files\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32
+;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\Sys
+tem32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files\\PuTTY\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Git\\cmd;C
+:\\Program Files\\nodejs\\;C:\\ProgramData\\chocolatey\\bin;C:\\Users\\pmwkd\\anaconda3;C:\\Users\\pmwkd\\anaconda3\\Library\\mingw-w64\\bin;C:\\Users\\pmwkd\\anaconda3\\Library\\usr\\bin;C:\\Users\\pmwkd\\anaconda3\\Library\\bin;C:
+\\Users\\pmwkd\\anaconda3\\Scripts;C:\\Users\\pmwkd\\AppData\\Local\\Programs\\Python\\Python39\\Scripts\\;C:\\Users\\pmwkd\\AppData\\Local\\Programs\\Python\\Python39\\;C:\\Users\\pmwkd\\AppData\\Local\\Microsoft\\WindowsApps;D:\\B
+andizip\\;C:\\Program Files\\JetBrains\\IntelliJ IDEA Community Edition 2020.1.1\\bin;;C:\\Users\\pmwkd\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\pmwkd\\AppData\\Local\\GitHubDesktop\\bin;C:\\Program Files\\JetBra
+ins\\IntelliJ IDEA 2022.2.1\\bin;;C:\\Users\\pmwkd\\AppData\\Roaming\\npm;C:\\Program Files\\JetBrains\\WebStorm 2022.2.3\\bin;;C:\\Users\\pmwkd\\WebstormProjects\\studynodejs\\node_modules\\.bin',
+  DriverData: 'C:\\Windows\\System32\\Drivers\\DriverData',
+  HOMEDRIVE: 'C:',
+  SESSIONNAME: 'Console',
+  LOGONSERVER: '\\\\TOTORO',
+  TERMINAL_EMULATOR: 'JetBrains-JediTerm',
+  HOMEPATH: '\\Users\\pmwkd',
+  SystemRoot: 'C:\\WINDOWS',
+  WebStorm: 'C:\\Program Files\\JetBrains\\WebStorm 2022.2.3\\bin;',
+  ChocolateyInstall: 'C:\\ProgramData\\chocolatey',
+  VBOX_HWVIRTEX_IGNORE_SVM_IN_USE: '1',
+  LOCALAPPDATA: 'C:\\Users\\pmwkd\\AppData\\Local',
+  APPDATA: 'C:\\Users\\pmwkd\\AppData\\Roaming',
+  PROCESSOR_IDENTIFIER: 'AMD64 Family 23 Model 8 Stepping 2, AuthenticAMD',
+  PATHEXT: '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW;.CPL',
+  PSModulePath: 'C:\\Users\\pmwkd\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules',
+  'ProgramFiles(x86)': 'C:\\Program Files (x86)',
+  OS: 'Windows_NT',
+  PROCESSOR_ARCHITECTURE: 'AMD64',
+  NUMBER_OF_PROCESSORS: '12',
+  JAVA_HOME: 'C:\\Program Files\\Java\\jdk-11.0.14',
+  ComSpec: 'C:\\WINDOWS\\system32\\cmd.exe',
+  PROCESSOR_LEVEL: '23',
+  windir: 'C:\\WINDOWS',
+  USERDOMAIN_ROAMINGPROFILE: 'TOTORO',
+  ProgramFiles: 'C:\\Program Files',
+  VBOX_MSI_INSTALL_PATH: 'C:\\Program Files\\Oracle\\VirtualBox\\',
+  TMPDIR: 'C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp',
+  TEMP: 'C:\\Users\\pmwkd\\AppData\\Local\\Temp',
+  TMP: 'C:\\Users\\pmwkd\\AppData\\Local\\Temp',
+  'CommonProgramFiles(x86)': 'C:\\Program Files (x86)\\Common Files',
+  OneDrive: 'C:\\Users\\pmwkd\\OneDrive',
+  OneDriveConsumer: 'C:\\Users\\pmwkd\\OneDrive',
+  USERDOMAIN: 'TOTORO',
+  SystemDrive: 'C:',
+  COMPUTERNAME: 'TOTORO',
+  ProgramData: 'C:\\ProgramData',
+  ChocolateyLastPathUpdate: '133113352897755979',
+  'IntelliJ IDEA': 'C:\\Program Files\\JetBrains\\IntelliJ IDEA 2022.2.1\\bin;',
+  CommonProgramFiles: 'C:\\Program Files\\Common Files',
+  __INTELLIJ_COMMAND_HISTFILE__: 'C:\\Users\\pmwkd\\AppData\\Local\\JetBrains\\WebStorm2022.2\\terminal\\history\\studynodejs-history'
+}
+> process.nextTick
+[Function: nextTick]
+
+-----------------------------------------
+process.env
+
+- 시스템 환경 변수 외에도 임의로 환경 변수를 저장할 수 있음
+- 서비스의 중요한 키를 저장하는 공간으로도 사용 됨.
+    - 서버나 DB의 비밀번호와 각종 API 키를 코드에 직접 입력하는 것은 위험함.
+    - 중요한 비밀번호는 다음과 같이 process.env의 속성으로 대체
+        - const secretId = process.env.SECRET_ID;
+        - const secretCode = process.env.SECRET_CODE;
+    - 이제 process.env.SECRET_ID와 process.env.SECRET_CODE를 넣으면 됨. dotenv를 사용해서 넣을수 있음
+
+process.nextTick(콜백)
+
+- 이벤트 루프가 다른 콜백 함수들보다 nextTick의 콜백 함수를 우선적으로 처리하도록 만듦.
+
+process.exit(코드)
+
+- 실행 중인 노드 프로세스를 종료함.
+- 서버 환경에서 이 함수를 사용하면 서버가 멈추므로 특수한 경우를 제외하고는 서버에서 잘 사용하지 않지만,
+    서버 외의 독립적인 프로그램에서는 수동으로 노드를 멈추기 위해 사용
