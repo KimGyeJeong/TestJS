@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>multipart</title>
+</head>
+<body>
+<!--파일 업로드-->
+<!--<div>-->
+<!--    <form action="/upload" method="post" enctype="multipart/form-data">-->
+<!--        <input type="file" name="image"/>-->
+<!--        <input type="text" name="title"/>-->
+<!--        <button type="submit">전송</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+여러 파일 업로드
+<div>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="image1"/>
+        <input type="file" name="image2"/>
+
+        <input type="text" name="title" />
+        <button type="submit">업로드</button>
+    </form>
+</div>
+
+</body>
+</html>
