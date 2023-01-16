@@ -120,3 +120,11 @@ class Person_static2 {
         console.log('Hi!');
     }
 }
+
+//정적 메서드는 클래스로 호출함
+//정적 메서드는 인스턴스 없이도 호출할 수 있음
+Person_static2.sayHi();
+
+// 인스턴스 생성
+const me_static2 = new Person_static2('Kim');
+// me_static2.sayHi(); // TypeError: me_static2.sayHi is not a function
