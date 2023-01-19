@@ -107,10 +107,11 @@ class Bird_1 extends Animal_1 {
         return 'fly';
     }
 }
+
 const bird_1 = new Bird_1(1, 2);
 console.log(bird_1); // Bird { age: 1, weight: 2 }
-console.log(bird_1 instanceof  Bird_1); // true
-console.log(bird_1 instanceof  Animal_1); // true
+console.log(bird_1 instanceof Bird_1); // true
+console.log(bird_1 instanceof Animal_1); // true
 
 console.log(bird_1.eat()); // eat
 console.log(bird_1.move()); // move
@@ -121,15 +122,16 @@ console.log('--------------------------');
 
 //참고용 의사 클래스 상속패턴.. 사용하지 않음
 // 의사 클래스 상소갸(pseudo classical inheritance) 패턴
-var Animal = (function(){
-    function Animal(age, weight){
+var Animal = (function () {
+    function Animal(age, weight) {
         this.age = age;
         this.weight = weight;
     }
-    Animal.prototype.eat = function(){
+
+    Animal.prototype.eat = function () {
         return 'eat';
     };
-    Animal.prototype.move  = function (){
+    Animal.prototype.move = function () {
         return 'move';
     };
 
@@ -137,8 +139,8 @@ var Animal = (function(){
 }());
 
 // Animal 생성자 함수를 상속하여 확장한 Bird 생성자 함수
-var Bird = (function(){
-    function Bird(){
+var Bird = (function () {
+    function Bird() {
         // Animal 생성자 함수에게 this 와 인수를 전달하면서 호출
         Animal.apply(this.arguments);
     }
@@ -148,14 +150,14 @@ var Bird = (function(){
     //Bird.prototype.constructor을 Animal 에서 Bird로 교체
     Bird.prototype.constructor = Bird;
 
-    Bird.prototype.fly = function (){
+    Bird.prototype.fly = function () {
         return 'fly';
     };
 
     return Bird;
 }());
 
-var bird = new Bird(1,5);
+var bird = new Bird(1, 5);
 
 console.log(bird); // Bird { age: 1, weight: 5 }
 console.log(bird.eat()); // eat
@@ -169,21 +171,24 @@ console.log('--------------------------');
 // 상속을 통해 클래스를 확장하려면 extends 키워드를 사용하여 상속받을 클래스를 정의함.
 
 //수퍼(베이스, 부모)클래스
-class Base{
+class Base {
     testNum = 2;
-    constructor(){
+
+    constructor() {
         console.log('Base 생성자 호출');
     }
-    getTestNum(){
+
+    getTestNum() {
         return this.testNum;
     }
-    setTestNum(num){
+
+    setTestNum(num) {
         this.testNum = num;
     }
 }
 
 //서브(파생, 자식)클래스
-class Derived extends Base{
+class Derived extends Base {
 
 }
 
@@ -194,5 +199,163 @@ console.log(derived.getTestNum())
 
 
 // 동적 상속
-// extends 키워드는 클래스 ㅃㄴ만 아니라 생성자 함수를 상속받아 클래스를 확장할 수도 있다.
+// extends 키워드는 클래스 뿐만 아니라 생성자 함수를 상속받아 클래스를 확장할 수도 있다.
 // 단, extends 키워드 앞에는 반드시 클래슥 와야 한다.
+
+//생성자 함수
+function Base_1(a) {
+    this.a = a;
+}
+
+//생성자 함수를 상속받는 서브 클래스
+class Derived_1 extends Base_1 {
+}
+
+const derived_1 = new Derived_1(1);
+console.log(derived_1); // Derived_1 { a: 1 }
+
+function Base1() {
+}
+
+class Base2 {
+}
+
+let condition = true;
+
+//조건에 따라 동적으로 상속 대상을 결정하는 서브 클래스
+class Derived1 extends (condition ? Base1 : Base2) {
+}
+
+const derived1 = new Derived1();
+console.log(derived1); // Derived1 {}
+
+console.log(derived1 instanceof Derived1); // true
+console.log(derived1 instanceof Base1); // true
+console.log(derived1 instanceof Base2); // false
+
+
+// 서브 클래스의 constructor
+// 클래스에서 constructor를 생략하면 클래스에 비어있는 constructor가 암묵적으로 정의됨.
+
+//부모클래스와 자식클래스 모두 constructor를 생략한 경우
+class Base_parent {
+}
+
+class Derived_child extends Base_parent {
+}
+
+//위와 같은 경우 암묵적으로 아래와 같이 constructor가 정의됨
+class Base_parent1 {
+    constructor() {
+    }
+}
+
+class Derived_child1 extends Base_parent1 {
+    constructor(...args) {
+        super(...args);
+    }
+}
+
+const derived_child1 = new Derived_child1();
+console.log(derived_child1); // Derived_child1 {}
+// 위와 같이 부모, 자식 클래스 모두 constructor를 생략하면 빈 객체가 생성됨.
+// 프로퍼티를 소유하는 인스턴스를 생성하려면 constructor 내부에서 인스턴스에 프로퍼티를 추가해야 함.
+
+
+//super 키워드
+// super 키워드는 함수처럼 호출할 수도 있고, this와 같이 식별자처럼 참조할 수 있는 특수한 키워드.
+// - super를 호출하면 수퍼클래스의 constructor(super-constructor)를 ㅗ출함
+// - super를 참조하면 수퍼클래스의 메서드를 호출 할 수 있음.
+
+//수퍼클래스
+class Base_super1 {
+    constructor(a, b) {
+        this.a = a;
+        this.b = b;
+    }
+}
+
+//서브클래스
+class Derived_super1 extends Base_super1 {
+    //암묵적으로 다음과같이 constructor가 정의됨
+    //constructor( ...args){
+    //     super( ...args);
+    // }
+}
+
+const derived_super1 = new Derived_super1(1, 2);
+console.log(derived_super1); // Derived_super1 { a: 1, b: 2 }
+
+//수퍼클래스
+class Base_super2 {
+    constructor(a, b) {
+        this.a = a;
+        this.b = b;
+    }
+}
+
+//서브클래스
+class Derived_super2 extends Base_super2 {
+    constructor(a, b, c) {
+        super(a, b);
+        this.c = c;
+    }
+}
+
+const derived_super2 = new Derived_super2(1, 2, 3);
+console.log(derived_super2); // Derived_super2 { a: 1, b: 2, c: 3 }
+
+// 주의사항
+// 1. 서브클래스에서 constructor를 생략하지 않는 경우 서브클래스의 constructor에서는 반드시 super를 호출해야 함.
+class Base_s1 {
+}
+
+class Derived_s1 extends Base_s1 {
+    constructor() {
+        //super()없을시 에러발생.
+        super();
+        console.log('constructor call');
+    }
+}
+
+const derived_s1 = new Derived_s1();
+
+// 2. 서브클래스의 constructor 에서 super를 호출하기 전에는 this를 참조할 수 없음.
+class Base_s2 {
+}
+
+class Derived_s2 extends Base_s2 {
+    constructor() {
+
+        //super가 가장 먼저 위에 있어야 함.
+        // this.a=1;
+        super();
+    }
+}
+
+const derived_s2 = new Derived_s2(1); // 에러발생
+console.log(derived_s2); // Derived_s2 {}
+
+// 3. super는 반드시 서브클래스의 constructor에서만 호출한다. 서브클래스가 아닌 클래스의 constructor나 함수에서 super를 호출하면 에러가 발생
+class Base_s3 {
+    constructor(){
+        // super();    //SyntaxError: 'super' keyword unexpected here
+    }
+}
+function Foo_s3(){
+    // super();    //SyntaxError: 'super' keyword unexpected here
+}
+
+
+//super참조
+// 메서드 내에서 super를 참조하면 수퍼클래스의 메서드를 호출할 수 있음
+
+//1. 서브클래스의 프로토타입 메서드 내에서 super.sayHi는 수퍼클래스의 프로토타입 메서드 sayHi를 가리킴
+class Base_super3{
+    constructor(name) {
+        this.name = name;
+    }
+    sayHi(){
+        return `Hi! My name is ${this.name}`;
+    }
+}
