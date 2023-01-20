@@ -359,3 +359,43 @@ class Base_super3{
         return `Hi! My name is ${this.name}`;
     }
 }
+class Derived_super3 extends Base_super3{
+    sqyHi(){
+        return `${super.sayHi()}. how are you doing?`;
+    }
+}
+
+const derived_super3 = new Derived_super3('Kim');
+console.log(derived_super3.sayHi()); // Hi! My name is Kim
+
+//아래의 코드는 위와 동일
+// super 참조를 통해 수퍼클래스의 메서드를 참조하려면 super가 수퍼클래스의 메서드가 바인딩된 객체, 즉 수퍼클래스의 prototype프로퍼티에 바인딩된 프로토타입을 참조할 수 있어야 함.
+class Base_super4{
+    constructor(name) {
+        this.name = name;
+    }
+    sayHi(){
+        return `Hi! My name is ${this.name}`;
+    }
+}
+class Derived_super4 extends Base_super4{
+    sqyHi(){
+        //__super는 Base.prototype을 가리킴
+        const __super = Object.getPrototypeOf(Derived_super4.prototype);
+        return `${__super.sayHi.call(this)}. how are you doing?`;
+    }
+}
+
+//2. 서브 클래스의 정적 메서드 내에서 super.sayHi는 수퍼클래스의 정적 메서드 sayHi를 가리킴
+class Base_super5{
+    static sayHi(){
+        return `Hi!`;
+    }
+}
+class Derived_super5 extends Base_super5{
+    static sayHi(){
+        return `${super.sayHi()}.. How are you doing?`;
+    }
+}
+
+console.log(Derived_super5.sayHi()); // Hi!.. How are you doing?
