@@ -29,6 +29,3 @@ const derived_2 = {
     }
 };
 console.log(derived_2.sayHi());
-
-
-// 화살표 함수
