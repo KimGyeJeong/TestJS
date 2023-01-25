@@ -137,3 +137,48 @@ sayHi 프로퍼티에 할당된 화살표 함수 내부의 this는 상위 스코
 빈 문자열을 갖는 window.name과 같다. 전역 객체 window에는 빌트인 프로퍼티 name이 존재함
  */
 person_1.sayHi();  // Hi undefined
+
+// 좋은 예.
+const person_2 = {
+    name : 'Kim',
+    sayHi(){
+        console.log(`Hi ${this.name}`);
+    }
+};
+
+person_2.sayHi();  // Hi Kim
+
+// 프로토타입 객체의 프로퍼티에 화살표 함수를 할당하는 경우도 동일한 문제가 생김.
+// 나쁜 예.
+function Person_3(name){
+    this.name = name;
+}
+// Person_3.prototype.sayHi() = () => console.log(`Hi ${this.name}`);
+
+const person_3 = new Person_3('Kim');
+// person_3.sayHi();  // TypeError: Person_3.prototype.sayHi is not a function
+
+//프로퍼티를 동적 추가할 때는 ES6 메서드 정의를 사용할 수 없으므로 일반 함수를 할당함
+// 좋은 예.
+function Person_4(name){
+    this.name = name;
+}
+Person_4.prototype.sayHi = function(){
+    console.log(`Hi ${this.name}`);
+}
+const person_4 = new Person_4('Kim');
+person_4.sayHi();  // Hi Kim
+
+//일반 함수가 아닌 ES6메서드를 동적 추가하고 싶다면 아래와 같이 객체 리터럴을 바인딩하고 프로토타입의 constructor 프로퍼티와 생성자 함수 간의 연결을 재설정 함
+function Person_5(name){
+    this.name = name;
+}
+Person_5.prototype = {
+    constructor : Person_5,
+    sayHi(){
+        console.log(`Hi ${this.name}`);
+    }
+};
+
+const person_5 = new Person_5('Kim');
+person_5.sayHi();  // Hi Kim
