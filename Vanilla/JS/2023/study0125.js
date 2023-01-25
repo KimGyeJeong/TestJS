@@ -116,3 +116,24 @@ const arrow = () => this.x;
 
 console.log(normal.call({ x: 10 }));  // 10
 console.log(arrow.call({ x: 10 }));  // 1
+
+//화살표 함수가 Function.prototype.call, Function.prototype.apply, Function.prototype.bind 메서드를 호출할 수 없다는 의미는 아니다.
+//화살표 함수는 함수 자체의 this 바인딩을 갖지 않기 때문에 this를 교체할 수 없고 언제나 상위 스코프의 this 바인딩을 참조함
+const add = (a,b) => a+b;
+console.log(add.call(null, 1, 2));  // 3
+console.log(add.apply(null, [1, 2]));  // 3
+console.log(add.bind(null, 1, 2)());  // 3
+
+console.log(add(1,2));  // 3
+
+//메서드를 화살표 함수로 정의하는 것은 피해야 한다.
+// 좋지 않은 예.
+const person_1 = {
+    name : 'Kim',
+    sayHi : () => console.log(`Hi ${this.name}`),
+};
+/*
+sayHi 프로퍼티에 할당된 화살표 함수 내부의 this는 상위 스코프인 전역의 this가 가리키는 전역 객체를 가리키므로 이 예제를 브라우저에서 실행하면 this.name은
+빈 문자열을 갖는 window.name과 같다. 전역 객체 window에는 빌트인 프로퍼티 name이 존재함
+ */
+person_1.sayHi();  // Hi undefined
