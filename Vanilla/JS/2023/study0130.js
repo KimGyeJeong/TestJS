@@ -101,3 +101,7 @@ console.log(sum_7.length); // 1
 
 sum_7(1); // Arguments(1) [1, callee: ƒ, Symbol(Symbol.iterator): ƒ]
 sum_7(1,2); // Arguments(2) [1, 2, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+
+
+console.log('------------------');
+
