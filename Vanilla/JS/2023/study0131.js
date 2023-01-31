@@ -100,3 +100,30 @@ console.log(typeof arr_3);
 arr_3.forEach((item, index)=>{
     console.log(`${index} 번째 타입은 ${typeof item}`);
 });
+
+//배열과 일반 객체의 성능을 테스트 해보면 배열이 일반 객체보다 빠르다.
+const arr_4 = [];
+console.time('Array');
+for(let i = 0; i < 100000; i++){
+    arr_4[i] = i;
+}
+console.timeEnd('Array');
+
+const obj = {};
+console.time('Object');
+for(let i = 0; i < 100000; i++){
+    obj[i] = i;
+}
+console.timeEnd('Object');
+
+//....? 객체가 더 빠름....??
+/*
+Array: 5.336ms
+Object: 3.393ms
+
+Array: 5.934ms
+Object: 4.636ms
+
+Array: 6.027ms
+Object: 4.215ms
+ */
