@@ -55,3 +55,7 @@ console.log(result_6); // [1, 2, 3, 4, 5, 6]
 // 중복요소를 제거할 때는 reduce 메서드보다 filter 메서드를 사용하는 방법이 더 직관적임
 const result_6_1 = values_6.filter((value, index, _values) => _values.indexOf(value) === index);
 console.log(result_6_1); // [1, 2, 3, 4, 5, 6]
+
+// 중복되지 않는 유일한 값들의 집합인 Set을 사용할 수도 있음
+const result_6_2 = [...new Set(values_6)];
+console.log(result_6_2); // [1, 2, 3, 4, 5, 6]
