@@ -113,6 +113,5 @@ const obj_1 = {
 console.log(obj_1[Symbol.for('mySymbol')]); // 1
 console.log(obj_1[Symbol.for('mySymbol2')]); // 2
 
-//심벌 값은 유일무이한 값이므로 심벌 값으로 프로퍼티 키를 만들면 다른 프로퍼티 키와 절대 충돌하지 않는다.
 
 
