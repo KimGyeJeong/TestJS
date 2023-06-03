@@ -1,35 +1,29 @@
-const name = 'MAX';
-let age = 29;
-const hasHobbies = true;
+const person  = {
+    name : 'MAX',
+    age : 29,
+    greet : () =>
+    {
+        console.log('Hi, I am ' + this.name);
+    }
+};
 
-console.log(name);  // MAX
-console.log(age);   // 29
-console.log(hasHobbies);    // true
+console.log(person);
 
-age = 30;
+person.greet(); // Hi, I am undefined
 
-function summarizeUser(userName, userAge, userHasHobby) {
-    return (
-        'Name is ' + userName + ', age is ' + userAge + ' and the user has hobbies: ' + userHasHobby
-    );
-}
+const person2 = {
+    name : 'MIN',
+    age : 30,
+    greet : function(){
+        console.log('Hi, I am ' + this.name);
+    }
+};
+person2.greet(); // Hi, I am MIN
 
-
-console.log(summarizeUser(name, age, hasHobbies));    // Name is MAX, age is 29 and the user has hobbies: true
-
-const summarizeUser2 = (username, userage, userhasHobby) => {
-    return (
-        'Name is ' + username + ', age is ' + userage + ' and the user has hobbies: ' + userhasHobby
-    );
-}
-
-console.log(summarizeUser2(name, age, hasHobbies));   // Name is MAX, age is 30 and the user has hobbies: true
-
-const add = (a, b) => a + b;
-console.log(add(1, 2)); // 3
-
-const addOne = x => x+1;
-console.log(addOne(1)); // 2
-
-const addRandom = () => Math.random() + Math.random();
-console.log(addRandom());
+const person3 = {
+    name : 'MAX2',
+    greet(){
+        console.log('Hi, I am ' + this.name);
+    }
+};
+person3.greet(); // Hi, I am MAX2
