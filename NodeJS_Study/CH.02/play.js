@@ -60,3 +60,21 @@ console.log(toArray(1,2,3));
 const toArray2 = (...args) => args;
 console.log(toArray2(1,2,3));
 
+
+console.log(person);
+const printName = (person) => person.name;
+console.log(printName(person));
+
+const printName2 = ({name}) => name;
+console.log(printName2(person));
+
+const printName3 = ({name, age}) => `${name} : ${age}`;
+console.log(printName3(person));
+
+const {name, age} = person;
+console.log(name, age);
+
+
+console.log(hobbies);
+const [hobby1, hobby2] = hobbies;
+console.log(hobby1, hobby2);
