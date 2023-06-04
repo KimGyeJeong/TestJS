@@ -39,3 +39,24 @@ console.log(hobbies.map(hobby =>
      'Hobby : '+ hobby
 ));
 console.log(hobbies)
+
+const copiedArray = hobbies.slice();
+console.log(`copiedArray : ${copiedArray}`);
+
+const copiedArray2 = [hobbies];
+console.log(`copiedArray2 : ${copiedArray2}`);
+
+console.log(hobbies == copiedArray2); // false
+console.log(hobbies === copiedArray2); // false
+
+const copiedArray3 = [...hobbies];
+console.log(`copiedArray3 : ${copiedArray3}`);
+console.log(hobbies == copiedArray3); // false
+console.log(hobbies === copiedArray3); // false
+
+const toArray = (arg1, arg2, arg3) => [arg1, arg2, arg3];
+console.log(toArray(1,2,3));
+
+const toArray2 = (...args) => args;
+console.log(toArray2(1,2,3));
+
