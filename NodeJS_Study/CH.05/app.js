@@ -12,7 +12,17 @@ app.use('/add-product',(req, res, next) => {
     res.send('<form action="/product" method="post"><input type="text" name="title"><button type="submit">Add Product</button> </form>')
 });
 
-app.use('/product', (req, res) => {
+// app.use('/product', (req, res) => {    // 현재 get요청도 받음
+//     console.log(req.body);
+//     res.redirect('/');
+// });
+
+// app.get('/product', (req, res) => {    // get 요청 받기
+//     console.log(req.body);
+//     res.redirect('/');
+// });
+
+app.post('/product', (req, res) => {    // post 요청 받기
     console.log(req.body);
     res.redirect('/');
 });
