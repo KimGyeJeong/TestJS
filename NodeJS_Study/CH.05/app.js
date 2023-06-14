@@ -9,18 +9,11 @@ const shopRoutes = require('./routes/shop');
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(adminRoutes);
-
 app.use(shopRoutes);
 
+//404 ERR PAGE
+app.use((req, res, next) => {
+    res.status(404).send('<h1>Page not found</h1>');
+})
+
 app.listen(3000);
-
-
-
-/*
-In the middleware!
-In the another middleware!
-In the middleware!
-In the another middleware!
-
-두번씩 찍히는 이유는 favicon.ico 요청 때문?
- */
