@@ -9,6 +9,9 @@ const shopRoutes = require('./routes/shop');
 
 app.use(bodyParser.urlencoded({extended: false}));
 
+//css 파일을 사용하기 위한 설정. 읽기전용
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
