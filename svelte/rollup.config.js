@@ -43,7 +43,7 @@ export default {
 				dev: !production
 			}
 		}),
-		// we'll extract any component CSS out into
+		// we'll extract any components CSS out into
 		// a separate file - better for performance
 		css({ output: 'bundle.css' }),
 
